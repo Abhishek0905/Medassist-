@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<link href="/static/product.css" rel="stylesheet">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Products</title>
+</head>
+<!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-2.1.1.min.js">
+    </script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function(){
+    $('select').formSelect();
+    });
+</script>
+<script src="/static/project.js"></script>
+<body>
+<div class="maincontainer">
+  <div class="box" style="padding: 20px;">
+  <div class="boxheading">
+      <span style="padding:3px;width:40%;display: flex;justify-content: flex-start"><a href="http://localhost:8000/productinterface"><i class="material-icons" style="color: #FFFFFF; font-size: 24px;">add_box</i></a></span>
+                <span class="headingtext">Product List</span>
+  </div>
+<table class="striped responsive-table centered ">
+        <thead>
+          <tr>
+              <th>Product ID</th>
+              <th>Product Name</th>
+              <th>product Price</th>
+              <th>Offer Price</th>
+              <th>Packing Type</th>
+              <th>Sale Status </th>
+              <th>Quantity</th>
+              <th>Status</th>
+              <th>Rating</th>
+              <th>Icon</th>
+              <th>Category Id</th>
+              <th>Subcategory Id</th>
+              <th>Brand Id</th>
+              <th>Update</th>
+          </tr>
+        </thead>
+<tbody>
+{% for row in records %}
+                <tr><td>{{ row.productid }}</td>
+                <td>{{ row.productname }}</td>
+                <td>{{ row.productprice }}</td>
+                <td>{{ row.offerprice }}</td>
+                <td>{{ row.packingtype }}</td>
+                <td>{{ row.salestatus }}</td>
+                <td>{{ row.quantity }}</td>
+                <td>{{ row.status }}</td>
+                <td>{{ row.rating }}</td>
+                <td><img src="/static/{{ row.producticon }}" icon_pid="{{ row.productid }}" producticon="{{ row.producticon }}" productid="{{ row.productid }}" class="imgbtn" width="40"/></td>
+                <td>{{ row.categoryid }}</td>
+                <td>{{ row.subcategoryid }}</td>
+                <td>{{ row.brandid }}</td>
+                <td><a class="waves-effect waves-light btn modal-trigger editdeletebtn" pid="{{ row.productid }}" pname="{{ row.productname }}" pp="{{ row.productprice }}" op="{{ row.offerprice }}" pt="{{ row.packingtype }}" ss="{{ row.salestatus }}" qty="{{ row.quantity}}"  sat="{{ row.status }}" rat="{{ row.rating }}" cid="{{ row.categoryid }}" sid="{{ row.subcategoryid }}" bid="{{ row.brandid }}" href="#modal1">Edit/Delete</a></td></tr>
+
+{% endfor %}
+    </tbody>
+    </table>
+  </div>
+  </div>
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+        <input type="hidden" id="productid"/>
+    <div class="modalbox">
+        <div class="boxheading">
+            <span class="headingtextinterface">Product Interface</span>
+<!--           <span style="padding:3px; width:70%; display: flex;justify-content: flex-end"><a href="http://localhost:8000/displayallproduct"><i class="material-icons" style="color: #ffffff; font-size: 30px;">toc</i></a></span>-->
+        </div>
+
+        <div >
+           <div class="row">
+                <div class="input-field col s4">
+                <i class="material-icons prefix">account_circle</i>
+                <select id="categoryid" name="categoryid">
+                    <option value="" disabled selected>Choose your option</option>
+                </select>
+                <label>Select Category Id</label>
+                </div>
+
+                <div class="input-field col s4">
+                <i class="material-icons prefix">account_circle</i>
+                <select id="subcategoryid" name="subcategoryid">
+                    <option value="" disabled selected>Choose your option</option>
+                </select>
+                <label>Select Subcategory Id</label>
+                </div>
+
+                    <div class="input-field col s4">
+                <i class="material-icons prefix">account_circle</i>
+                <select id="brandid" name="brandid">
+                    <option value="" disabled selected>Choose your option</option>
+                </select>
+                <label>Select Brand Id</label>
+               </div>
+           </div>
+            <div class="row">
+               <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="productname" name="productname" type="text" class="validate">
+                    <label for="productname">Product Name</label>
+
+               </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="productprice" name="productprice" type="text" class="validate">
+                    <label for="productprice">Product Price</label>
+
+               </div>
+           </div>
+            <div class="row">
+               <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="offerprice" name="offerprice" type="text" class="validate">
+                    <label for="offerprice">Offer Price</label>
+
+               </div>
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="packingtype" name="packingtype" type="text" class="validate">
+                    <label for="packingtype">Packing Type</label>
+
+               </div>
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="salestatus" name="salestatus" type="text" class="validate">
+                    <label for="salestatus">Sale Status</label>
+
+               </div>
+           </div>
+            <div class="row">
+               <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="quantity" name="quantity" type="text" class="validate">
+                    <label for="quantity">Quantity</label>
+
+               </div>
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="status" name="status" type="text" class="validate">
+                    <label for="status">Status</label>
+
+               </div>
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="rating" name="rating" type="text" class="validate">
+                    <label for="rating">Product rating</label>
+
+               </div>
+           </div>
+
+        </div>
+
+            <div class="row ">
+                <div class="col s6 btnrow">
+ <button class="btn waves-effect waves-light btnstyle editbtn" type="submit" name="action">Edit
+    <i class="material-icons right">edit</i>
+  </button>
+                </div>
+
+                <div class="col s6 btnrow">
+   <button class="btn waves-effect waves-light btnstyle delbtn" type="reset" name="action">Remove
+    <i class="material-icons right">remove</i>
+  </button>
+                </div>
+           </div>
+          <div class="row">
+           <div class="col s12 btnrow">
+               <div id="message" class="messagestyle">{{message}}</div>
+           </div>
+       </div>
+
+
+        </div>
+</div>
+
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat btnclose">Close</a>
+    </div>
+  </div>
+</div>
+ </div>
+
+
+<!-- Modal Structure For Picture -->
+<div id="modal2" class="modal" style="width:300px; height: auto; display: flex;justify-content: center">
+    <div class="modal-content">
+        <div style="padding: 10px;">
+            <input type="hidden" id="icon_pid"/>
+            <img id="icon" width="200"/>
+        </div>
+        <div style="padding: 15px;"><b>Select New Picture:</b></div>
+        <div style="padding: 15px">
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>File</span>
+                    <input required type="file" id="newicon">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+
+            <button class="btn waves-effect waves-light iconbtn">Edit Icon
+                <i class="material-icons right">edit</i>
+            </button>
+            <a href="#!" class="waves-effect waves-green btn-flat btniconclose">Close</a>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+<!-- Compiled and minified JavaScript -->
+<script type="text/javascript"
+            src="https://code.jquery.com/jquery-2.1.1.min.js">
+    </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+     $(document).ready(function () {
+        $('#modal1').modal();
+        $('#modal2').modal();
+
+        $('#productname').val('  ')
+        $('#productprice').val('  ')
+        $('#offerprice').val('  ')
+        $('#packingtype').val('  ')
+        $('#salestatus').val('  ')
+        $('#quantity').val('  ')
+        $('#status').val('  ')
+        $('#rating').val('  ')
+        $('#categoryid').val('  ')
+        $('#subcategoryid').val('  ')
+        $('#brandid').val('  ')
+
+
+        $('.editdeletebtn').click(function () {
+            $('#message').html("")
+            $('#productid').val($(this).attr('pid'))
+            $('#productname').val($(this).attr('pname'))
+            $('#productprice').val($(this).attr('pp'))
+            $('#offerprice').val($(this).attr('op'))
+            $('#packingtype').val($(this).attr('pt'))
+            $('#salestatus').val($(this).attr('ss'))
+            $('#quantity').val($(this).attr('qty'))
+            $('#status').val($(this).attr('sat'))
+            $('#rating').val($(this).attr('rat'))
+            $('#categoryid').val($(this).attr('cid'))
+            $('#subcategoryid').val($(this).attr('sid'))
+            $('#brandid').val($(this).attr('bid'))
+            $('select').formSelect()
+        })
+
+        $('.editbtn').click(function () {
+
+            $.getJSON('http://localhost:8000/editproduct', {
+                productid:$('#productid').val(),
+                productname:$('#productname').val(),
+                productprice:$('#productprice').val(),
+                offerprice:$('#offerprice').val(),
+                packingtype:$('#packingtype').val(),
+                salestatus:$('#salestatus').val(),
+                quantity:$('#quantity').val(),
+                status:$('#status').val(),
+                rating:$('#rating').val(),
+                categoryid:$('#categoryid').val(),
+                subcategoryid:$('#subcategoryid').val(),
+                brandid:$('#brandid').val(),
+            }, function (data) {
+                if (data.result) {
+                    $('#message').html("Product Updated Successfully :) ..")
+                } else {
+                    $('#message').html("Fail to  Update Product :(..")
+                }
+
+            })
+
+        })
+         $('.delbtn').click(function () {
+            $.getJSON('http://localhost:8000/deleteproduct', {productid: $('#productid').val()}, function (data) {
+                if (data.result) {
+                    $('#message').html("Product Deleted Successfully :) ..")
+                } else {
+                    $('#message').html("Fail to Delete product :( ..")
+                }
+            })
+        })
+
+        $('.btnclose').click(function () {
+
+            $('#modal1').modal('close');
+            window.location.reload('http://localhost:8000/displayallproduct')
+
+        })
+          $('.btniconclose').click(function () {
+
+            $('#modal2').modal('close');
+            window.location.reload('http://localhost:8000/displayallproduct')
+
+        })
+
+        $('.imgbtn').click(function () {
+            // alert($(this).attr('productid'))
+            $('#icon_pid').val($(this).attr('productid'))
+            $('#modal2').modal('open');
+            $('#icon').attr('src', `/static/${$(this).attr('producticon')}`)
+        })
+
+        });
+$('.iconbtn').click(function () {
+        var formData = new FormData()
+        alert($('#icon_pid').val())
+        formData.append('productid', $('#icon_pid').val())
+        var file = $('#newicon')[0].files
+        if (file.length > 0)
+            formData.append('producticon', file[0])
+        $.ajax({
+            url: '/editproducticon',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            type: 'post',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response != 0) {
+                    alert
+                    (true)
+                } else {
+                    alert(false)
+                }
+            }
+        })
+    })
+</script>
+</html>

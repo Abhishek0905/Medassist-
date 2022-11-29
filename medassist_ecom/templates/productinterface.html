@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<link href="/static/product.css" rel="stylesheet">
+<html lang="en">
+<head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/project.js"></script>
+    <script>
+    $(document).ready(function(){
+    $('select').formSelect();
+    });
+
+   </script>
+    <meta charset="UTF-8">
+    <title>Product Interface</title>
+</head>
+<body>
+<form action="/submitproduct" enctype="multipart/form-data" method="post"> {% csrf_token %}
+<div class="maincontainer">
+    <div class="box">
+        <div class="boxheading">
+            <span class="headingtextinterface">Product Interface</span>
+           <span style="padding:3px; width:70%; display: flex;justify-content: flex-end"><a href="http://localhost:8000/displayallproduct"><i class="material-icons" style="color: #ffffff; font-size: 30px;">toc</i></a></span>
+        </div>
+
+        <div >
+           <div class="row">
+                <div class="input-field col s4">
+                <i class="material-icons prefix">account_circle</i>
+                <select id="categoryid" name="categoryid">
+                    <option value="" disabled selected>Choose your option</option>
+                </select>
+                <label>Select Category Id</label>
+                </div>
+
+                <div class="input-field col s4">
+                <i class="material-icons prefix">account_circle</i>
+                <select id="subcategoryid" name="subcategoryid">
+                    <option value="" disabled selected>Choose your option</option>
+                </select>
+                <label>Select Subcategory Id</label>
+                </div>
+
+                    <div class="input-field col s4">
+                <i class="material-icons prefix">account_circle</i>
+                <select id="brandid" name="brandid">
+                    <option value="" disabled selected>Choose your option</option>
+                </select>
+                <label>Select Brand Id</label>
+               </div>
+           </div>
+            <div class="row">
+               <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="productname" name="productname" type="text" class="validate">
+                    <label for="productname">Product Name</label>
+
+               </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="productprice" name="productprice" type="text" class="validate">
+                    <label for="productprice">Product Price</label>
+
+               </div>
+           </div>
+            <div class="row">
+               <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="offerprice" name="offerprice" type="text" class="validate">
+                    <label for="offerprice">Offer Price</label>
+
+               </div>
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="packingtype" name="packingtype" type="text" class="validate">
+                    <label for="packingtype">Packing Type</label>
+
+               </div>
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="salestatus" name="salestatus" type="text" class="validate">
+                    <label for="salestatus">Sale Status</label>
+
+               </div>
+           </div>
+            <div class="row">
+               <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="quantity" name="quantity" type="text" class="validate">
+                    <label for="quantity">Quantity</label>
+
+               </div>
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="status" name="status" type="text" class="validate">
+                    <label for="status">Status</label>
+
+               </div>
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input required id="rating" name="rating" type="text" class="validate">
+                    <label for="rating">Product rating</label>
+
+               </div>
+           </div>
+
+           <div class="row">
+
+               <div class="input-field col s12">
+               <div class="file-field input-field">
+                    <div class="btn">
+                       <span>File</span>
+                       <input required type="file" name="producticon">
+                    </div>
+                  <div class="file-path-wrapper">
+                     <input class="file-path validate" type="text">
+                 </div>
+               </div>
+           </div>
+
+           </div>
+        </div>
+
+            <div class="row ">
+                <div class="col s6 btnrow">
+ <button class="btn waves-effect waves-light btnstyle" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+                </div>
+
+                <div class="col s6 btnrow">
+   <button class="btn waves-effect waves-light btnstyle" type="reset" name="action">Reset
+    <i class="material-icons right">delete</i>
+  </button>
+                </div>
+           </div>
+          <div class="row">
+           <div class="col s12 btnrow">
+               <div class="messagestyle">{{message}}</div>
+           </div>
+       </div>
+
+
+        </div>
+     </div>
+</div>
+</div>
+    </form>
+</body>
+ <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</html>

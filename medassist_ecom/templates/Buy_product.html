@@ -1,0 +1,66 @@
+<!doctype html>
+<link href="/static/category.css">
+
+<html>
+<head>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+
+         </script>
+
+      <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>Continue Shopping</title>
+</head>
+<header>
+{% include 'AppBar.html'  %}
+</header>
+<body>
+<div class="container" style="padding: 25px;">
+    <div class="row">
+        <div class="col s6">
+            <img src="/static/{{product.producticon }}" width="70%">
+        </div>
+        <div class="col s6">
+            <div style="font-family: Arial; font-size: 38px">{{ product.productname }}</div>
+            <div>
+            <span style="margin: 10px 10px">{{ product.cname }}</span><span style="margin: 10px 20px;">{{ product.scname }}</span>
+            </div>
+            <div style="margin-top: 20px; margin-bottom: 30px">
+               <hr size="3" width="100%" color="black">
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <span style="font-family: Arial; font-size: 23px;">Best Price: <u> ₹{{ product.offerprice }} </u></span>
+                <span>MRP:<s>₹{{ product.price }}</s></span>
+                <span>(Inclusive of all taxes)</span>
+                    <ul >
+                        <li>* This product cannot be returned for a refund or exchange.</li>
+                        <li>* Mkt: {{ product.bname }}</li>
+                        <li>* Country of Origin: India.</li>
+                        <li>* Delivery charges if applicable will be applied at checkout.</li>
+                    </ul>
+            </div>
+        </div>
+
+        <div>
+            <span id="qtycomponent">
+            <a product="{{ product }}" class="btn-floating btn-small minus" style="background:#30336b;"  ><i class="material-icons">remove</i></a>
+               <span id="qty">1</span>
+            <a product="{{ product }}" class="btn-floating btn-small plus" style="background:#30336b;" ><i class="material-icons">add</i></a>
+            </span>
+            <button  product="{{ product }}"  class="btn wave-light wave-effect addtocart" style="background:#30336b;margin-right: 10px;">Add To Cart</button>
+            <button class="btn wave-light wave-effect" style="background:#30336b;margin-left: 10px">Buy Now</button>
+        </div>
+    </div>
+</div>
+{% include 'Footer.html' %}
+</body>
+</html>

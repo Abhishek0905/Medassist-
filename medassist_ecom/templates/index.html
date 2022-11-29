@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div>
+{% include 'AppBar.html'  %}
+<div>
+    <div class="carousel carousel-slider">
+    <a class="carousel-item" href="#one!"><img src="/static/1.jpg"></a>
+    <a class="carousel-item" href="#two!"><img src="/static/2.jpg"></a>
+    <a class="carousel-item" href="#three!"><img src="/static/3.jpg"></a>
+    <a class="carousel-item" href="#four!"><img src="/static/4.jpg"></a>
+  </div>
+</div>
+<!--
+Sub category
+-->
+<div  style="display:flex; flex-direction: row;flex-wrap: wrap;" id="subcategorylist">
+</div>
+
+
+
+
+
+
+<div id="productlist" style="padding: 5px; display: flex; flex-direction: row; flex-wrap: wrap;" >
+
+</div>
+
+{% include 'Footer.html' %}
+
+
+</div>
+
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script>
+        $(document).ready(function(){
+
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
+  })
+
+  });
+</script>
+
+</html>
